@@ -12,6 +12,12 @@ class PendaftarController extends Controller
         ]);
     }
 
+    public function detail(){
+        return view('menu.pendaftar.detail',[
+            'title' => 'Detail Pendaftar'
+        ]);
+    }
+
     public function formPendaftaran(){
         return view('menu.pendaftar.form-pendaftaran',[
             'title' => 'Form Pendaftaran'

@@ -30,13 +30,13 @@
             </ul>
         </li> --}}
         <li class="sidebar-item">
-            <a href="{{ route('pendaftaran') }}" class="sidebar-link">
+            <a href="" class="sidebar-link">
                 <i class="fa-regular fa-user"></i>
                 <span>Beranda</span>
             </a>
         </li>
         <li class="sidebar-item">
-            <a href="" class="sidebar-link">
+            <a href="{{ route('pendaftaran') }}" class="sidebar-link">
                 <i class="fa-regular fa-user"></i>
                 <span>Pendaftar</span>
             </a>

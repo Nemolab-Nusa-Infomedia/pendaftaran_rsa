@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="row">
-        <div class="card box p-3">
+        <div class="card box p-3 mt-3">
             <span class="text-secondary fw-bold">Data Pendaftar</span>
             <div class="table-responsive mt-3">
                 <table class="table">
@@ -33,8 +33,7 @@
                             <td class="text-center align-middle">083104778904</td>
                             <td class="text-center align-middle aksi">
                                 <div class="d-flex gap-3">
-                                    <a href="" class="text-c7"><i class="fa-regular fa-square-check"></i></a>
-                                    <a href="" class="text-success"><i class="fa-regular fa-address-card"></i></a>
+                                    <a href="{{ route('detail-pendaftar') }}" class="text-success"><i class="fa-regular fa-address-card"></i></a>
                                     <a href="" class="text-danger"><i class="fa-regular fa-trash-can"></i></a>
                                 </div>
                             </td>
@@ -51,8 +50,7 @@
                             <td class="text-center align-middle">083104778904</td>
                             <td class="text-center align-middle aksi">
                                 <div class="d-flex gap-3">
-                                    <a href="" class="text-c7"><i class="fa-regular fa-square-check"></i></a>
-                                    <a href="" class="text-success"><i class="fa-regular fa-address-card"></i></a>
+                                    <a href="{{ route('detail-pendaftar') }}" class="text-success"><i class="fa-regular fa-address-card"></i></a>
                                     <a href="" class="text-danger"><i class="fa-regular fa-trash-can"></i></a>
                                 </div>
                             </td>

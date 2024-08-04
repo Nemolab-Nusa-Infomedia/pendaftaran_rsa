@@ -17,3 +17,4 @@ Route::get('/pendaftaran', [PendaftarController::class, 'index'])->name('pendaft
 Route::get('/form-pendaftaran', [PendaftarController::class, 'formPendaftaran'])->name('form-pendaftaran');
 Route::get('/pendaftaran-berhasil', [PendaftarController::class, 'pendaftaranBerhasil'])->name('pendaftaran-berhasil');
 Route::get('/pendaftaran-gagal', [PendaftarController::class, 'pendaftaranGagal'])->name('pendaftaran-gagal');
+Route::get('/detail-pendaftar', [PendaftarController::class, 'detail'])->name('detail-pendaftar');
