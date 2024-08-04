@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PendaftarController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,3 +19,6 @@ Route::get('/form-pendaftaran', [PendaftarController::class, 'formPendaftaran'])
 Route::get('/pendaftaran-berhasil', [PendaftarController::class, 'pendaftaranBerhasil'])->name('pendaftaran-berhasil');
 Route::get('/pendaftaran-gagal', [PendaftarController::class, 'pendaftaranGagal'])->name('pendaftaran-gagal');
 Route::get('/detail-pendaftar', [PendaftarController::class, 'detail'])->name('detail-pendaftar');
+
+// Notification
+Route::get('/notification', [NotificationController::class, 'index'])->name('notification');

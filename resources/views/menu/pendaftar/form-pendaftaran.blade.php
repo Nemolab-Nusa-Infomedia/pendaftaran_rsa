@@ -135,13 +135,13 @@
                         </div>
 
                         <div class="row gap-2 mx-auto mt-3">
-                            <a type="button" data-bs-toggle="modal" data-bs-target="#simpan" class="btn btn-c3 text-white">Daftar</a>
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#daftar" class="btn btn-c3 text-white">Daftar</button>
                             <a href="https://rumahsinggahamanah.web.id/" class="btn btn-outline-c9">Kembali</a>
                         </div>
                     </div>
 
                     {{-- pop up --}}
-                    <div class="modal fade" id="simpan" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                    <div class="modal fade" id="daftar" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
                         <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content p-3">
                             <div class="d-flex justify-content-between">
