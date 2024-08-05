@@ -154,7 +154,7 @@
                         <div class="col-12 col-md-4">
                             <div class="mb-3">
                                 <label for="foto-surat-rujukan" class="form-label fw-bold @error('foto_surat-rujukan') is-invalid @enderror">Foto Surat Rujukan RS/Dokter</label>
-                                <input id="foto-surat-rujukan" name="foto_surat-rujukan" class="form-control form-control-sm" type="file">
+                                <input id="foto-surat-rujukan" name="foto_surat_rujukan" class="form-control form-control-sm" type="file">
                                 @error('foto_surat-rujukan')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -163,9 +163,9 @@
                         </div>
                         <div class="col-12 col-md-4">
                             <div class="mb-3">
-                                <label for="foto-bpjs" class="form-label fw-bold @error('foto_bpjs') is-invalid @enderror">Foto BPJS Kelas 3</label>
-                                <input id="foto-bpjs" name="foto_bpjs" class="form-control form-control-sm" type="file">
-                                @error('foto_bpjs')
+                                <label for="foto-bpjs" class="form-label fw-bold @error('foto_bpjs_kelas_tiga') is-invalid @enderror">Foto BPJS Kelas 3</label>
+                                <input id="foto-bpjs" name="foto_bpjs_kelas_tiga" class="form-control form-control-sm" type="file">
+                                @error('foto_bpjs_kelas_tiga')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                                 <img id="preview-foto-bpjs" class="preview-image" src="#" alt="Preview Foto BPJS Kelas 3">
@@ -178,7 +178,7 @@
                                 @error('foto_skm')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
-                                <img id="preview-foto-pasien" class="preview-image" src="#" alt="Preview Foto SKM (Bila Ada)">
+                                <img id="preview-foto-skm" class="preview-image" src="#" alt="Preview Foto SKM (Bila Ada)">
                             </div>
                         </div>
                         <span class="fw-bold text-secondary mb-3 border-bottom border-secondary">Pendamping</span>
