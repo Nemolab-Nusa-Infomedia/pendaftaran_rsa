@@ -41,7 +41,7 @@ class AdminController extends Controller
             Storage::delete('public/'.$patient->foto_skm);
         }
         if($patient->foto_berbaru_pendamping){
-            Storage::delete('public/'.$patient->foto_berbaru_pendamping);
+            Storage::delete('public/'.$patient->foto_terbaru_pendamping);
         }
         if($patient->foto_ktp_pendamping){
             Storage::delete('public/'.$patient->foto_ktp_pendamping);
