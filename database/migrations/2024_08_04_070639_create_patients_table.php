@@ -14,8 +14,11 @@ return new class extends Migration
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
             $table->string('nama_lengkap_pasien');
+            $table->string('nomor_telepon_pasien');
             $table->enum('kriteria_pasien', ['Anak-Anak', 'Dewasa']);
             $table->text('alamat');
+            $table->string('kecamatan');
+            $table->string('provinsi');
             $table->date('tanggal_masuk');
             $table->date('tanggal_keluar');
             $table->text('foto_ktp_pasien');

@@ -10,7 +10,7 @@ class StorePatientRequest extends FormRequest
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool {
-        return false;
+        return true;
     }
 
     /**
@@ -20,28 +20,35 @@ class StorePatientRequest extends FormRequest
      */
     public function rules(): array {
         return [
-            'name' => 'required|string',
+            'nama_lengkap_pasien' => 'required|string',
+            'nomor_telepon_pasien' => 'required|numeric',
             'kriteria_pasien' => 'required',
             'alamat' => 'required',
+            'kecamatan' => 'required',
+            'provinsi' => 'required',
             'tanggal_masuk' => 'required',
             'tanggal_keluar' => 'required',
-            'foto_ktp_pasien' => 'required',
-            'foto_terbaru_pasien' => 'required',
-            'foto_kk' => 'required',
-            'foto_surat_rujukan' => 'required',
-            'foto_bpjs_kelas_tiga' => 'required',
+            'foto_ktp_pasien' => 'required|image',
+            'foto_terbaru_pasien' => 'required|image',
+            'foto_kk' => 'required|image',
+            'foto_surat_rujukan' => 'required|image',
+            'foto_bpjs_kelas_tiga' => 'required|image',
+            'foto_skm' => 'nullable|image',
             'nama_lengkap_pendamping' => 'required',
             'nomor_telepon_pendamping' => 'required',
-            'foto_terbaru_pendamping' => 'required',
-            'foto_ktp_pendamping' => 'required'
+            'foto_terbaru_pendamping' => 'required|image',
+            'foto_ktp_pendamping' => 'required|image'
         ];
     }
 
-    public function message(): array {
+    public function messages(): array {
          return [
-            'name.required' => 'Nama lengkap belum diisi',
+            'nama_lengkap_pasien.required' => 'Nama lengkap belum diisi',
+            'nomor_telepon_pasien.required' => 'Nomor telepon belum diisi',
             'kriteria_pasien.required' => 'Pilih kriteria pasien',
             'alamat.required' => 'Alamat belum diisi',
+            'kecamatan.required' => 'Kecamatan belum diisi',
+            'provinsi.required' => 'Provinsi belum diisi',
             'tanggal_masuk.required' => 'Tanggal masuk belum diisi',
             'tanggal_keluar.required' => 'Tanggal keluar belum diisi',
             'foto_ktp_pasien.required' => 'Foto KTP pasien belum diisi',
