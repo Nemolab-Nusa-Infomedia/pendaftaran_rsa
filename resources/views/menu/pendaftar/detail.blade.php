@@ -2,16 +2,27 @@
 
 
 @section('content')
+@php
+function formatPhoneNumber($phoneNumber) {
+    if (!empty($phoneNumber) && $phoneNumber[0] == '0') {
+        return '62' . substr($phoneNumber, 1);
+    }
+    return $phoneNumber;
+}
+@endphp
 <div class="row mx-auto">
     <div class="card p-2 card-detail">
         <span class="fs-5 fw-bold">{{ $patient->nama_lengkap_pasien }}</span>
         <div class="d-flex align-items-center justify-content-between">
             <span class="text-secondary fw-bold">{{ $patient->kriteria_pasien }}</span>
+            @if($patient->is_accepted == false)            
             <form action="{{ route('accept-patient-pendaftaran', ['patient'=>$patient]) }}" method="post">
                 @csrf
-                {{-- <input type="text" name="is_accepted" hidden id="is-accepted" value="true"> --}}
-                <button type="submit" class="btn btn-c7 text-white">Accept</button>
+                <button type="submit" class="btn btn-c7 text-white">Setujui Pendaftaran</button>
             </form>
+            @else
+                <button type="submit" class="btn btn-c3 text-white">Sudah Disetujui</button>
+            @endif
         </div>
         <div class="border-bottom border-dark mt-3"></div>
         <div class="table-responsive mt-3">
@@ -27,7 +38,7 @@
                 </tr>
                 <tr>
                     <td class="text-secondary">Nomor Telepon Pasien</td>
-                    <td class="fw-bold">: {{ $patient->nomor_telepon_pasien }}</td>
+                    <td class="fw-bold">: {{ $patient->nomor_telepon_pasien }} <a href="https://wa.me/{{ formatPhoneNumber($patient->nomor_telepon_pasien)}}?text={{ urlencode('Halo dengan Bapak/Ibu/Saudara/i '. $patient->nama_lengkap_pasien. '?') }}"  target="_blank"><i class="fa-brands fa-square-whatsapp text-c3"></i> Chat via Whatsapp</a></td>
                 </tr>
                 <tr>
                     <td class="text-secondary">Alamat</td>
@@ -55,7 +66,7 @@
                 </tr>
                 <tr>
                     <td class="text-secondary">Nomor Telepon Pendamping</td>
-                    <td class="fw-bold">: {{ $patient->nomor_telepon_pendamping }}</td>
+                    <td class="fw-bold">: {{ $patient->nomor_telepon_pendamping }} <a href="https://wa.me/{{ formatPhoneNumber($patient->nomor_telepon_pendamping)}}?text={{ urlencode('Halo dengan Bapak/Ibu/Saudara/i '. $patient->nama_lengkap_pendamping. '?') }}" target="_blank"><i class="fa-brands fa-square-whatsapp text-c3"></i> Chat via Whatsapp</a></td>
                 </tr>
             </table>
 

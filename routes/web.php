@@ -10,7 +10,6 @@ use App\Http\Controllers\PatientController;
 // ========== Auth ==========
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'check'])->name('check');
-
 // Pendaftaran
 Route::get('/', [PatientController::class, 'formPendaftaran'])->name('form-pendaftaran');
 Route::post('/store', [PatientController::class, 'store'])->name('store-pendaftaran');
@@ -24,6 +23,7 @@ Route::middleware(['auth'])->group(function () {
     // ========== Dashboard ==========
     Route::get('/pendaftaran', [AdminController::class, 'index'])->name('pendaftaran');
     Route::get('/detail-pendaftar/{patient}', [AdminController::class, 'detail'])->name('detail-pendaftar');
+    Route::get('/hapus-pendaftar/{patient}', [AdminController::class, 'destroy'])->name('hapus-pendaftar');
     
     // Notification
     Route::get('/notification', [NotificationController::class, 'index'])->name('notification');

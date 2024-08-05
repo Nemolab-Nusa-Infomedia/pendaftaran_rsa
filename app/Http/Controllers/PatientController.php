@@ -5,6 +5,7 @@ use App\Models\Patient;
 use Illuminate\Http\Request;
 use App\Helpers\FileImageHelper;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\StorePatientRequest;
 
 class PatientController extends Controller
@@ -51,10 +52,14 @@ class PatientController extends Controller
             if($request->hasFile('foto_ktp_pendamping')){
                 $data['foto_ktp_pendamping'] = $request->file('foto_ktp_pendamping')->storeAs('idcard_companion', FileImageHelper::generateFileName($data['nama_lengkap_pasien'], $request->file('foto_ktp_pendamping')), 'public');
             }
-            Patient::create($data);
-            return back()->with('success', 'Data Pasien Berhasil Dikirim !');
+            $patient = Patient::create($data);
+            Mail::send('menu.pendaftar.sent-email.index', ['patient' => $patient], function ($message) use ($patient) {
+                        $message->to('rizqybs24@gmail.com');
+                        $message->subject('Email Pemberitahuan Pendaftar Baru');
+                    });
+            return redirect()->route('pendaftaran-berhasil')->with('success', 'Data Pasien Berhasil Dikirim !');
         } catch (\Exception $e) {
-            return back()->with('error', 'Terjadi kesalahan saat mengirim data!');
+            return redirect()->route('pendaftaran-gagal')->with('error', 'Terjadi kesalahan saat mengirim data!');
         }
     }
     public function acceptPatient(Patient $patient){

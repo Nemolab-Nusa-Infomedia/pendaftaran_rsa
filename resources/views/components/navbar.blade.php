@@ -23,7 +23,7 @@
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-icon pe-md-0" data-bs-toggle="dropdown">
-                        <img src="{{ asset('assets/img/vindra.jpeg') }}" class="rounded-3" width="40px" alt="">
+                        <img src="{{ asset('assets/img/profil-dummy.jpg') }}" class="rounded-3" width="40px" alt="">
                     </a>
                     <div class="dropdown-menu dropdown-menu-end rounded">
                         <a href="#" class="dropdown-item">
