@@ -3,15 +3,15 @@
 
 @section('content')
 <div class="row mx-auto">
-    <div class="card p-2">
+    <div class="card p-2 card-detail">
         <span class="fs-5 fw-bold">Vindra Arya Yulian</span>
         <div class="d-flex align-items-center justify-content-between">
             <span class="text-secondary fw-bold">Dewasa</span>
-            <button type="button" class="btn btn-c9 text-white">Accept</button>
+            <button type="button" class="btn btn-c7 text-white">Accept</button>
         </div>
         <div class="border-bottom border-dark mt-3"></div>
         <div class="table-responsive mt-3">
-            <table width="100%">
+            <table class="table table-detail" width="100%">
                 <span class="fw-bold border-bottom border-dark">Pasien</span>
                 <tr>
                     <td class="text-secondary">Nama Lengkap Pasien</td>
@@ -62,40 +62,40 @@
 
             {{-- lampiran pasien --}}
             <div id="lampiranPasien" class="row col-12 col-md-12 mx-auto mt-3">
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-6 col-sm-6 col-xl-3">
                     <div class="row mb-3">
                         <span>Foto KTP Pasien</span>
-                        <img src="{{ asset('assets/img/test.jpg') }}" style="width: 300px" alt="">
+                        <img src="{{ asset('assets/img/test.jpg') }}" style="width: 330px" alt="">
                     </div>
                 </div>
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-6 col-sm-6 col-xl-3">
                     <div class="row mb-3">
                         <span>Foto Terbaru Pasien</span>
-                        <img src="{{ asset('assets/img/test.jpg') }}" style="width: 300px" alt="">
+                        <img src="{{ asset('assets/img/test.jpg') }}" style="width: 330px" alt="">
                     </div>
                 </div>
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-6 col-sm-6 col-xl-3">
                     <div class="row mb-3">
                         <span>Foto Kartu Keluarga</span>
-                        <img src="{{ asset('assets/img/test.jpg') }}" style="width: 300px" alt="">
+                        <img src="{{ asset('assets/img/test.jpg') }}" style="width: 330px" alt="">
                     </div>
                 </div>
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-6 col-sm-6 col-xl-3">
                     <div class="row mb-3">
                         <span>Foto Surat Rujukan RS/Dokter</span>
-                        <img src="{{ asset('assets/img/test.jpg') }}" style="width: 300px" alt="">
+                        <img src="{{ asset('assets/img/test.jpg') }}" style="width: 330px" alt="">
                     </div>
                 </div>
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-6 col-sm-6 col-xl-3">
                     <div class="row mb-3">
                         <span>Foto BPJS Kelas 3</span>
-                        <img src="{{ asset('assets/img/test.jpg') }}" style="width: 300px" alt="">
+                        <img src="{{ asset('assets/img/test.jpg') }}" style="width: 330px" alt="">
                     </div>
                 </div>
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-6 col-sm-6 col-xl-3">
                     <div class="row mb-3">
                         <span>Foto SKM (Bila Ada)</span>
-                        <img src="{{ asset('assets/img/test.jpg') }}" style="width: 300px" alt="">
+                        <img src="{{ asset('assets/img/test.jpg') }}" style="width: 330px" alt="">
                     </div>
                 </div>
 
@@ -103,16 +103,16 @@
 
             {{-- Lampiran Pendamping --}}
             <div id="lampiranPendamping" class="row col-12 col-md-12 mx-auto mt-3 d-none">
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-6 col-sm-6 col-xl-3">
                     <div class="row mb-3">
                         <span>Foto KTP Pendamping</span>
-                        <img src="{{ asset('assets/img/test.jpg') }}" style="width: 300px" alt="">
+                        <img src="{{ asset('assets/img/test.jpg') }}" style="width: 330px" alt="">
                     </div>
                 </div>
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-6 col-sm-6 col-xl-3">
                     <div class="row mb-3">
                         <span>Foto Terbaru Pendamping</span>
-                        <img src="{{ asset('assets/img/test.jpg') }}" style="width: 300px" alt="">
+                        <img src="{{ asset('assets/img/test.jpg') }}" style="width: 330px" alt="">
                     </div>
                 </div>
             </div>

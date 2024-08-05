@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PatientController;
 
@@ -19,3 +20,6 @@ Route::get('/pendaftaran-gagal', [PatientController::class, 'pendaftaranGagal'])
 // ========== Dashboard ==========
 Route::get('/pendaftaran', [AdminController::class, 'index'])->name('pendaftaran');
 Route::get('/detail-pendaftar', [AdminController::class, 'detail'])->name('detail-pendaftar');
+
+// Notification
+Route::get('/notification', [NotificationController::class, 'index'])->name('notification');

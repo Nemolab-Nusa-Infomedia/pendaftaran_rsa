@@ -31,13 +31,13 @@
         </li> --}}
         <li class="sidebar-item">
             <a href="" class="sidebar-link">
-                <i class="fa-regular fa-user"></i>
+                <i class="fa-solid fa-chart-column"></i>
                 <span>Beranda</span>
             </a>
         </li>
         <li class="sidebar-item">
             <a href="{{ route('pendaftaran') }}" class="sidebar-link">
-                <i class="fa-regular fa-user"></i>
+                <i class="fa-regular fa-newspaper"></i>
                 <span>Pendaftar</span>
             </a>
         </li>
@@ -45,7 +45,7 @@
 
     <div class="sidebar-footer">
         <a href="" class="sidebar-link">
-            <i class="fa-regular fa-user"></i>
+            <i class="fa-solid fa-right-from-bracket"></i>
             <span>Logout</span>
         </a>
     </div>
