@@ -1,18 +1,28 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $title }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <script src="https://kit.fontawesome.com/0a267e6f70.js" crossorigin="anonymous"></script>
-</head>
-  <body>
 
+    <style>
+        /* Style untuk preview gambar */
+        .preview-image {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+            display: none; /* Mulai tersembunyi */
+        }
+    </style>
+</head>
+<body>
     <div class="d-flex justify-content-center align-items-center">
         <div class="container-fluid">
             <div class="card box p-2 mt-3 mb-3 mx-auto">
+                <!-- Success/Error Alerts -->
                 @if(session('success'))
                 <div class="position-absolute top-2 end-0 alert alert-success alert-dismissible fade show" role="alert">
                     <strong>Sukses !</strong> {{ session('success') }}
@@ -29,8 +39,9 @@
                     <img src="{{ asset('assets/img/rumah-singgah-logo.png') }}" width="150px" alt="">
                     <h3 class="fw-bold ms-1 mt-2">Daftar RSA</h3>
                 </div>
-                <form action="{{ route('store-pendaftaran') }}" method="POST" enctype="multipart/form-data">
+                <form id="registrationForm" action="{{ route('store-pendaftaran') }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    <!-- Form Fields -->
                     <div class="row col-12 col-md-12 mx-auto mt-3">
                         <span class="fw-bold text-secondary mb-3 border-bottom border-secondary">Pasien</span>
                         <div class="col-12 col-md-3">
@@ -112,57 +123,64 @@
                         {{-- document lampiran --}}
                         <div class="col-12 col-md-4">
                             <div class="mb-3">
-                                <label id="foto-ktp-pasien" class="form-label fw-bold @error('foto_ktp_pasien') is-invalid @enderror">Foto KTP Pasien</label>
+                                <label for="foto-ktp-pasien" class="form-label fw-bold @error('foto_ktp_pasien') is-invalid @enderror">Foto KTP Pasien</label>
                                 <input id="foto-ktp-pasien" name="foto_ktp_pasien" class="form-control form-control-sm" type="file">
                                 @error('foto_ktp_pasien')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
+                                <img id="preview-foto-ktp-pasien" class="preview-image" src="#" alt="Preview Foto KTP Pasien">
                             </div>
                         </div>
                         <div class="col-12 col-md-4">
                             <div class="mb-3">
-                                <label id="foto-terbaru-pasien" class="form-label fw-bold @error('foto_terbaru_pasien') is-invalid @enderror">Foto Terbaru Pasien</label>
+                                <label for="foto-terbaru-pasien" class="form-label fw-bold @error('foto_terbaru_pasien') is-invalid @enderror">Foto Terbaru Pasien</label>
                                 <input id="foto-terbaru-pasien" name="foto_terbaru_pasien" class="form-control form-control-sm" type="file">
                                 @error('foto_terbaru_pasien')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
+                                <img id="preview-foto-terbaru-pasien" class="preview-image" src="#" alt="Preview Foto Terbaru Pasien">
                             </div>
                         </div>
                         <div class="col-12 col-md-4">
                             <div class="mb-3">
-                                <label id="foto-kk" class="form-label fw-bold @error('foto_kk') is-invalid @enderror">Foto Kartu Keluarga</label>
+                                <label for="foto-kk" class="form-label fw-bold @error('foto_kk') is-invalid @enderror">Foto Kartu Keluarga</label>
                                 <input id="foto-kk" name="foto_kk" class="form-control form-control-sm" type="file">
                                 @error('foto_kk')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
+                                <img id="preview-foto-kk" class="preview-image" src="#" alt="Preview Foto Kartu Keluarga">
                             </div>
                         </div>
                         <div class="col-12 col-md-4">
                             <div class="mb-3">
-                                <label id="foto-surat-rujukan" class="form-label fw-bold @error('foto_surat_rujukan') is-invalid @enderror">Foto Surat Rujukan RS/Dokter</label>
-                                <input id="foto-surat-rujukan" name="foto_surat_rujukan" class="form-control form-control-sm" type="file">
-                                @error('foto_surat_rujukan')
+                                <label for="foto-surat-rujukan" class="form-label fw-bold @error('foto_surat-rujukan') is-invalid @enderror">Foto Surat Rujukan RS/Dokter</label>
+                                <input id="foto-surat-rujukan" name="foto_surat-rujukan" class="form-control form-control-sm" type="file">
+                                @error('foto_surat-rujukan')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
+                                <img id="preview-foto-surat-rujukan" class="preview-image" src="#" alt="Preview Foto Surat Rujukan RS/Dokter">
                             </div>
                         </div>
                         <div class="col-12 col-md-4">
                             <div class="mb-3">
-                                <label id="foto-bpjs" class="form-label fw-bold @error('foto_bpjs_kelas_tiga') is-invalid @enderror">Foto BPJS Kelas 3</label>
-                                <input id="foto-bpjs" name="foto_bpjs_kelas_tiga" class="form-control form-control-sm" type="file">
-                                @error('foto_bpjs_kelas_tiga')
+                                <label for="foto-bpjs" class="form-label fw-bold @error('foto_bpjs') is-invalid @enderror">Foto BPJS Kelas 3</label>
+                                <input id="foto-bpjs" name="foto_bpjs" class="form-control form-control-sm" type="file">
+                                @error('foto_bpjs')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
+                                <img id="preview-foto-bpjs" class="preview-image" src="#" alt="Preview Foto BPJS Kelas 3">
                             </div>
                         </div>
                         <div class="col-12 col-md-4">
                             <div class="mb-3">
-                                <label id="foto-skm" class="form-label fw-bold">Foto SKM (Bila Ada)</label>
+                                <label for="foto-skm" class="form-label fw-bold @error('foto_skm') is-invalid @enderror">Foto SKM (Bila Ada)</label>
                                 <input id="foto-skm" name="foto_skm" class="form-control form-control-sm" type="file">
+                                @error('foto_skm')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                                <img id="preview-foto-pasien" class="preview-image" src="#" alt="Preview Foto SKM (Bila Ada)">
                             </div>
                         </div>
-
-                        {{-- pemdamping --}}
                         <span class="fw-bold text-secondary mb-3 border-bottom border-secondary">Pendamping</span>
                         <div class="col-12 col-md-6">
                             <div class="mb-3">
@@ -184,46 +202,54 @@
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="mb-3">
-                                <label id="foto-ktp-pendamping" class="form-label fw-bold @error('foto_ktp_pendamping') is-invalid @enderror">Foto KTP Pendamping</label>
+                                <label for="foto-ktp-pendamping" class="form-label fw-bold @error('foto_ktp_pendamping') is-invalid @enderror">Foto KTP Pendamping</label>
                                 <input id="foto-ktp-pendamping" name="foto_ktp_pendamping" class="form-control form-control-sm" type="file">
                                 @error('foto_ktp_pendamping')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
+                                <img id="preview-foto-ktp-pendamping" class="preview-image" src="#" alt="Preview Foto KTP Pendamping">
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="mb-3">
-                                <label id="foto-terbaru-pendamping" class="form-label fw-bold @error('foto_terbaru_pendamping') is-invalid @enderror">Foto Terbaru Pendamping</label>
+                                <label for="foto-terbaru-pendamping" class="form-label fw-bold @error('foto_terbaru_pendamping') is-invalid @enderror">Foto Terbaru Pendamping</label>
                                 <input id="foto-terbaru-pendamping" name="foto_terbaru_pendamping" class="form-control form-control-sm" type="file">
                                 @error('foto_terbaru_pendamping')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
+                                <img id="preview-foto-terbaru-pendamping" class="preview-image" src="#" alt="Preview Foto Terbaru Pendamping">
                             </div>
-                        </div>
-
-                        <div class="row gap-2 mx-auto mt-3">
-                            <button type="button" data-bs-toggle="modal" data-bs-target="#simpan" class="btn btn-c3 text-white">Daftar</button>
-                            <a href="https://rumahsinggahamanah.web.id/" class="btn btn-outline-c9">Kembali</a>
                         </div>
                     </div>
-
-                    {{-- pop up --}}
+                    <!-- Button to trigger modal -->
+                    <div class="row gap-2 mx-auto mt-3">
+                        <button type="button" class="btn btn-c3 text-white" data-bs-toggle="modal" data-bs-target="#simpan">Daftar</button>
+                        <a href="https://rumahsinggahamanah.web.id/" class="btn btn-outline-c9">Kembali</a>
+                    </div>
+                    <!-- Modal -->
                     <div class="modal fade" id="simpan" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
                         <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content p-3">
-                            <div class="d-flex justify-content-between">
-                                <div class="row">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Anda yakin akan mengirim data ini?</h1>
-                                    <span>Jika anda masih ragu, Silahkan cek kembali data yang anda isi,</span>
-                                    <span>Klik tombol <b>daftar</b> jika sudah yakin untuk melanjutkan pendaftaran anda!!</span>
+                            <div class="modal-content p-3">
+                                <div class="d-flex justify-content-between">
+                                    <div class="row">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Anda yakin akan mengirim data ini?</h1>
+                                        <span>Jika anda masih ragu, Silahkan cek kembali data yang anda isi,</span>
+                                        <span>Klik tombol <b>daftar</b> jika sudah yakin untuk melanjutkan pendaftaran anda!!</span>
+                                    </div>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <div class="d-flex justify-content-end gap-1 mt-3">
+                                    <button type="button" class="btn btn-outline-c9" data-bs-dismiss="modal">Batal</button>
+                                    <button type="submit" class="btn btn-c3 text-white" id="submitButton">Daftar</button>
+                                </div>
+                                <!-- Loading Spinner -->
+                                <div class="modal-body text-center d-none" id="loadingSpinner">
+                                    <div class="spinner-border text-primary" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <p class="mt-2">Data sedang dikirim mohon tunggu dan jangan meninggalkan halaman ini hinggal proses selesai.....</p>
+                                </div>
                             </div>
-                            <div class="d-flex justify-content-end gap-1 mt-3">
-                                <button type="button" class="btn btn-outline-c9" data-bs-dismiss="modal">Batal</button>
-                                <button type="submit" class="btn btn-c3 text-white">Daftar</button>
-                            </div>
-                        </div>
                         </div>
                     </div>
                 </form>
@@ -231,5 +257,54 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  </body>
+    <script>
+        document.getElementById('submitButton').addEventListener('click', function () {
+            document.getElementById('loadingSpinner').classList.remove('d-none');
+        });
+    </script>
+
+    <script>
+        // Fungsi untuk menampilkan preview gambar
+        function previewImage(input, imgElement) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    imgElement.src = e.target.result; // Set gambar yang dipilih sebagai sumber gambar
+                    imgElement.style.display = 'block'; // Tampilkan elemen gambar
+                }
+
+                reader.readAsDataURL(input.files[0]); // Baca file sebagai URL data
+            }
+        }
+
+        // Bind perubahan input pada setiap input file
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('foto-ktp-pasien').addEventListener('change', function() {
+                previewImage(this, document.getElementById('preview-foto-ktp-pasien'));
+            });
+            document.getElementById('foto-terbaru-pasien').addEventListener('change', function() {
+                previewImage(this, document.getElementById('preview-foto-terbaru-pasien'));
+            });
+            document.getElementById('foto-kk').addEventListener('change', function() {
+                previewImage(this, document.getElementById('preview-foto-kk'));
+            });
+            document.getElementById('foto-surat-rujukan').addEventListener('change', function() {
+                previewImage(this, document.getElementById('preview-foto-surat-rujukan'));
+            });
+            document.getElementById('foto-bpjs').addEventListener('change', function() {
+                previewImage(this, document.getElementById('preview-foto-bpjs'));
+            });
+            document.getElementById('foto-skm').addEventListener('change', function() {
+                previewImage(this, document.getElementById('preview-foto-skm'));
+            });
+            document.getElementById('foto-ktp-pendamping').addEventListener('change', function() {
+                previewImage(this, document.getElementById('preview-foto-ktp-pendamping'));
+            });
+            document.getElementById('foto-terbaru-pendamping').addEventListener('change', function() {
+                previewImage(this, document.getElementById('preview-foto-terbaru-pendamping'));
+            });
+        });
+    </script>
+</body>
 </html>
