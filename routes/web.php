@@ -17,14 +17,14 @@ Route::post('/notification/{patient}', [PatientController::class, 'acceptPatient
 Route::get('/pendaftaran-berhasil', [PatientController::class, 'pendaftaranBerhasil'])->name('pendaftaran-berhasil');
 Route::get('/pendaftaran-gagal', [PatientController::class, 'pendaftaranGagal'])->name('pendaftaran-gagal');
 
-Route::middleware(['auth'])->group(function () { 
+Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
     // ========== Dashboard ==========
     Route::get('/pendaftaran', [AdminController::class, 'index'])->name('pendaftaran');
     Route::get('/detail-pendaftar/{patient}', [AdminController::class, 'detail'])->name('detail-pendaftar');
     Route::get('/hapus-pendaftar/{patient}', [AdminController::class, 'destroy'])->name('hapus-pendaftar');
-    
+
     // Notification
     Route::get('/notification', [NotificationController::class, 'index'])->name('notification');
 });

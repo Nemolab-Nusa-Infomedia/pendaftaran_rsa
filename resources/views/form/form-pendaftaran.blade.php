@@ -25,7 +25,10 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
                 @endif
-                <h3 class="fw-bold ms-1 mt-2">Daftar RSA</h3>
+                <div class="d-flex align-items-center gap-3">
+                    <img src="{{ asset('assets/img/rumah-singgah-logo.png') }}" width="150px" alt="">
+                    <h3 class="fw-bold ms-1 mt-2">Daftar RSA</h3>
+                </div>
                 <form action="{{ route('store-pendaftaran') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row col-12 col-md-12 mx-auto mt-3">
