@@ -54,7 +54,7 @@ class PatientController extends Controller
             }
             $patient = Patient::create($data);
             Mail::send('menu.pendaftar.sent-email.index', ['patient' => $patient], function ($message) use ($patient) {
-                        $message->to('rizqybs24@gmail.com');
+                        $message->to(env('EMAIL_ADMIN'));
                         $message->subject('Email Pemberitahuan Pendaftar Baru');
                     });
             return redirect()->route('pendaftaran-berhasil')->with('success', 'Data Pasien Berhasil Dikirim !');
