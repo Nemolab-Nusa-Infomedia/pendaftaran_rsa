@@ -15,7 +15,14 @@
             <div class="row mx-auto">
                 <img src="{{ asset('assets/img/rumah-singgah-logo.png') }}" class="mx-auto" style="width: 250px" alt="">
                 <h5 class="fw-bold text-c2 text-center mb-2">Login Admin Dashboard Rumah Singgah</h5>
-                <form action="">
+                @if(session('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Gagal !</strong> {{ session('error') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endif
+                <form action="{{ route('check') }}"  method="POST">
+                    @csrf
                     <div class="row">
                         <div class="mb-3 col-12">
                             <label class="form-label fw-bold">Email</label>
@@ -29,10 +36,10 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row mx-auto">
+                        <button type="submit" class="btn btn-c3 text-dark fw-bold" style="font-size: 15px">Login</button>
+                    </div>
                 </form>
-                <div class="row mx-auto">
-                    <button type="submit" class="btn btn-c3 text-dark fw-bold" style="font-size: 15px">Login</button>
-                </div>
             </div>
         </div>
     </div>
