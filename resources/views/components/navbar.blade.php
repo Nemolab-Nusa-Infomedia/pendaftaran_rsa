@@ -6,11 +6,20 @@
     </div>
 
     <div class="ms-auto">
-        <div class="d-flex gap-3 align-items-center">
+        <div class="d-flex gap-4 align-items-center">
             <div class="form-group">
                 <input type="search" placeholder="search" class="form-control">
             </div>
-            <a href="" class="text-dark fs-5"><i class="fa-solid fa-bell"></i></a>
+
+            <a href="{{ route('notification') }}" class="text-dark fs-5 position-relative">
+                <i class="fa-solid fa-bell"></i>
+                @if($pendingPatientCount > 0)
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 9px">
+                        {{ $pendingPatientCount > 99 ? '99+' : $pendingPatientCount }}
+                        <span class="visually-hidden">unread messages</span>
+                    </span>
+                @endif
+            </a>
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-icon pe-md-0" data-bs-toggle="dropdown">

@@ -4,10 +4,14 @@
 @section('content')
 <div class="row mx-auto">
     <div class="card p-2 card-detail">
-        <span class="fs-5 fw-bold">Vindra Arya Yulian</span>
+        <span class="fs-5 fw-bold">{{ $patient->nama_lengkap_pasien }}</span>
         <div class="d-flex align-items-center justify-content-between">
-            <span class="text-secondary fw-bold">Dewasa</span>
-            <button type="button" class="btn btn-c7 text-white">Accept</button>
+            <span class="text-secondary fw-bold">{{ $patient->kriteria_pasien }}</span>
+            <form action="{{ route('accept-patient-pendaftaran', ['patient'=>$patient]) }}" method="post">
+                @csrf
+                {{-- <input type="text" name="is_accepted" hidden id="is-accepted" value="true"> --}}
+                <button type="submit" class="btn btn-c7 text-white">Accept</button>
+            </form>
         </div>
         <div class="border-bottom border-dark mt-3"></div>
         <div class="table-responsive mt-3">
@@ -15,43 +19,43 @@
                 <span class="fw-bold border-bottom border-dark">Pasien</span>
                 <tr>
                     <td class="text-secondary">Nama Lengkap Pasien</td>
-                    <td class="fw-bold">: Vindra Arya Yulian</td>
+                    <td class="fw-bold">: {{ $patient->nama_lengkap_pasien }}</td>
                 </tr>
                 <tr>
                     <td class="text-secondary">Kriteria Pasien</td>
-                    <td class="fw-bold">: Dewasa</td>
+                    <td class="fw-bold">: {{ $patient->kriteria_pasien }}</td>
                 </tr>
                 <tr>
                     <td class="text-secondary">Nomor Telepon Pasien</td>
-                    <td class="fw-bold">: 083104788904</td>
+                    <td class="fw-bold">: {{ $patient->nomor_telepon_pasien }}</td>
                 </tr>
                 <tr>
                     <td class="text-secondary">Alamat</td>
-                    <td class="fw-bold">: Jl. Kenanga Grendeng RT 02/01</td>
+                    <td class="fw-bold">: {{ $patient->alamat }}</td>
                 </tr>
                 <tr>
                     <td class="text-secondary">Kota/Kecamatan</td>
-                    <td class="fw-bold">: Purwokerto Utara</td>
+                    <td class="fw-bold">: {{ $patient->kecamatan }}</td>
                 </tr>
                 <tr>
                     <td class="text-secondary">Provinsi</td>
-                    <td class="fw-bold">: Jawa Tengah</td>
+                    <td class="fw-bold">: {{ $patient->provinsi }}</td>
                 </tr>
                 <tr>
                     <td class="text-secondary">Tanggal Masuk</td>
-                    <td class="fw-bold">: 25 Juli 2024</td>
+                    <td class="fw-bold">: {{ $patient->tanggal_masuk }}</td>
                 </tr>
                 <tr>
                     <td class="text-secondary">Tanggal Keluar</td>
-                    <td class="fw-bold">: 25 Juli 2024</td>
+                    <td class="fw-bold">: {{ $patient->tanggal_keluar }}</td>
                 </tr>
                 <tr>
                     <td class="text-secondary">Nama Lengkap Pendamping</td>
-                    <td class="fw-bold">: Feliza Anindya Rahma Putri</td>
+                    <td class="fw-bold">: {{ $patient->nama_lengkap_pendamping }}</td>
                 </tr>
                 <tr>
                     <td class="text-secondary">Nomor Telepon Pendamping</td>
-                    <td class="fw-bold">: 083104788904</td>
+                    <td class="fw-bold">: {{ $patient->nomor_telepon_pendamping }}</td>
                 </tr>
             </table>
 
@@ -65,37 +69,37 @@
                 <div class="col-12 col-md-6 col-sm-6 col-xl-3">
                     <div class="row mb-3">
                         <span>Foto KTP Pasien</span>
-                        <img src="{{ asset('assets/img/test.jpg') }}" style="width: 330px" alt="">
+                        <img src="{{ asset('storage/'. $patient->foto_ktp_pasien) }}" style="width: 330px" alt="">
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-sm-6 col-xl-3">
                     <div class="row mb-3">
                         <span>Foto Terbaru Pasien</span>
-                        <img src="{{ asset('assets/img/test.jpg') }}" style="width: 330px" alt="">
+                        <img src="{{ asset('storage/'. $patient->foto_terbaru_pasien) }}" style="width: 330px" alt="">
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-sm-6 col-xl-3">
                     <div class="row mb-3">
                         <span>Foto Kartu Keluarga</span>
-                        <img src="{{ asset('assets/img/test.jpg') }}" style="width: 330px" alt="">
+                        <img src="{{ asset('storage/'. $patient->foto_kk) }}" style="width: 330px" alt="">
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-sm-6 col-xl-3">
                     <div class="row mb-3">
                         <span>Foto Surat Rujukan RS/Dokter</span>
-                        <img src="{{ asset('assets/img/test.jpg') }}" style="width: 330px" alt="">
+                        <img src="{{ asset('storage/'. $patient->foto_surat_rujukan) }}" style="width: 330px" alt="">
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-sm-6 col-xl-3">
                     <div class="row mb-3">
                         <span>Foto BPJS Kelas 3</span>
-                        <img src="{{ asset('assets/img/test.jpg') }}" style="width: 330px" alt="">
+                        <img src="{{ asset('storage/'. $patient->foto_bpjs_kelas_tiga) }}" style="width: 330px" alt="">
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-sm-6 col-xl-3">
                     <div class="row mb-3">
                         <span>Foto SKM (Bila Ada)</span>
-                        <img src="{{ asset('assets/img/test.jpg') }}" style="width: 330px" alt="">
+                        <img src="{{ asset('storage/'. $patient->foto_skm) }}" style="width: 330px" alt="">
                     </div>
                 </div>
 
@@ -106,13 +110,13 @@
                 <div class="col-12 col-md-6 col-sm-6 col-xl-3">
                     <div class="row mb-3">
                         <span>Foto KTP Pendamping</span>
-                        <img src="{{ asset('assets/img/test.jpg') }}" style="width: 330px" alt="">
+                        <img src="{{ asset('storage/'. $patient->foto_ktp_pendamping) }}" style="width: 330px" alt="">
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-sm-6 col-xl-3">
                     <div class="row mb-3">
                         <span>Foto Terbaru Pendamping</span>
-                        <img src="{{ asset('assets/img/test.jpg') }}" style="width: 330px" alt="">
+                        <img src="{{ asset('storage/'. $patient->foto_terbaru_pendamping) }}" style="width: 330px" alt="">
                     </div>
                 </div>
             </div>

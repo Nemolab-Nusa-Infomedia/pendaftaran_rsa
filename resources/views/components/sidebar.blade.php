@@ -38,13 +38,13 @@
         <li class="sidebar-item">
             <a href="{{ route('pendaftaran') }}" class="sidebar-link">
                 <i class="fa-regular fa-newspaper"></i>
-                <span>Pendaftar</span>
+                <span>Pasien</span>
             </a>
         </li>
     </ul>
 
     <div class="sidebar-footer">
-        <a href="" class="sidebar-link">
+        <a href="{{ route('logout') }}" class="sidebar-link">
             <i class="fa-solid fa-right-from-bracket"></i>
             <span>Logout</span>
         </a>

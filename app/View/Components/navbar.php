@@ -3,8 +3,9 @@
 namespace App\View\Components;
 
 use Closure;
-use Illuminate\Contracts\View\View;
+use App\Models\Patient;
 use Illuminate\View\Component;
+use Illuminate\Contracts\View\View;
 
 class navbar extends Component
 {
@@ -21,6 +22,7 @@ class navbar extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.navbar');
+        $pendingPatientCount = Patient::where('is_accepted', 0)->count();
+        return view('components.navbar', compact('pendingPatientCount'));
     }
 }

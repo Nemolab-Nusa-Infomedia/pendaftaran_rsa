@@ -19,4 +19,9 @@ class AuthController extends Controller
         }
         return back()->with('error','Email dan password tidak sesuai');
     }
+    
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('login');
+    }
 }

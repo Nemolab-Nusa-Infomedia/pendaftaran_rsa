@@ -31,6 +31,7 @@ return new class extends Migration
             $table->string('nomor_telepon_pendamping');
             $table->text('foto_terbaru_pendamping');
             $table->text('foto_ktp_pendamping');
+            $table->boolean('is_accepted')->default(false);
             $table->timestamps();
         });
     }

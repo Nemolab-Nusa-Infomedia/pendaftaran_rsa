@@ -57,4 +57,10 @@ class PatientController extends Controller
             return back()->with('error', 'Terjadi kesalahan saat mengirim data!');
         }
     }
+    public function acceptPatient(Patient $patient){
+        $patient->update([
+            'is_accepted' => 1
+        ]);
+        return back()->with('success', 'Pendaftar berhasil disetujui');
+    }
 }
