@@ -247,7 +247,7 @@
                                     <div class="spinner-border text-primary" role="status">
                                         <span class="visually-hidden">Loading...</span>
                                     </div>
-                                    <p class="mt-2">Data sedang dikirim mohon tunggu dan jangan meninggalkan halaman ini hinggal proses selesai.....</p>
+                                    <p class="mt-2">Data sedang dikirim mohon tunggu dan jangan meninggalkan halaman ini hingga proses selesai.....</p>
                                 </div>
                             </div>
                         </div>
