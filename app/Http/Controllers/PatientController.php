@@ -83,7 +83,7 @@ class PatientController extends Controller
         $formattedDate = $now->timezone('Asia/Jakarta')->translatedFormat('d F Y H:i:s');
 
         $dompdf = new Dompdf();
-        $dompdf->loadHtml(view('menu.pendaftar.patient-excel', [
+        $dompdf->loadHtml(view('menu.pendaftar.patient-pdf', [
             'patient' => Patient::all(),
             'tanggal' => $formattedDate
         ]));

@@ -17,7 +17,9 @@
         text-align: right;
     }
 </style>
-<table>
+<h3>Data Pasien Rumah Singgah Amanah</h3>
+<p>{{ $tanggal }}</p>
+<table width="100%">
     <thead>
         <tr>
         <th>No</th>
