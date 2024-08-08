@@ -413,13 +413,14 @@ th{
     font-size: 12px;
 }
 
-.card-notification{
+.card-notification-c7{
     border: 1px solid var(--color-c7);
 }
 
-.card-notification:hover{
-    border: 1px solid #3657ff;
+.card-notification-c6{
+    border: 1px solid var(--color-c6);
 }
+
 
 @media (max-width: 768px) {
     #sidebar {

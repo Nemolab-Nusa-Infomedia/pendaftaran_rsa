@@ -16,7 +16,10 @@
             </div>
             @endif
             <span class="text-secondary fw-bold">Data Pasien</span>
-            
+            <div class="d-flex gap-3 justify-content-end">
+                <a class="text-end fs-4" href="{{ route('export-excel') }}"><i class="fa-solid fa-file-excel text-success"></i></a>
+                <a class="text-end fs-4" href="{{ route('export-pdf') }}"><i class="fa-solid fa-file-pdf text-danger"></i></a>
+            </div>
             <div class="table-responsive mt-3">
                 <table class="table">
                     <thead>
@@ -46,7 +49,6 @@
                             <td class="text-center align-middle">{{ $pasien->nomor_telepon_pasien }}</td>
                             <td class="text-center align-middle">{{ $pasien->tanggal_masuk }}</td>
                             <td class="text-center align-middle">{{ $pasien->tanggal_keluar }}</td>
-                            <td class="text-center align-middle">{{ $pasien->nama_lengkap_pasien }}</td>
                             <td class="text-center align-middle">{{ $pasien->nama_lengkap_pendamping }}</td>
                             <td class="text-center align-middle">{{ $pasien->nomor_telepon_pendamping }}</td>
                             <td class="text-center align-middle aksi">

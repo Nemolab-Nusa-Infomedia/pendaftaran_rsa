@@ -29,9 +29,9 @@
                             <input type="email" name="email" class="form-control" style="border-radius: 20px" placeholder="Masukkan email akun">
                         </div>
                         <div class="mb-3 position-relative">
-                            <label for="password" class="mb-2 fw-bold">Buat Kata Sandi</label>
+                            <label for="password" class="mb-2 fw-bold">Kata Sandi</label>
                             <div class="input-group">
-                                <input type="password" id="password" class="form-control" style="border-radius: 20px" name="password" placeholder="buat kata sandi" required>
+                                <input type="password" id="password" class="form-control" style="border-radius: 20px" name="password" placeholder="Masukkan kata sandi" required>
                                 <i class="fas fa-eye" id="togglePassword" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; font-size: 18px; z-index: 99;"></i>
                             </div>
                         </div>

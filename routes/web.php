@@ -19,11 +19,14 @@ Route::get('/pendaftaran-gagal', [PatientController::class, 'pendaftaranGagal'])
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-
+    
     // ========== Dashboard ==========
     Route::get('/pendaftaran', [AdminController::class, 'index'])->name('pendaftaran');
     Route::get('/detail-pendaftar/{patient}', [AdminController::class, 'detail'])->name('detail-pendaftar');
     Route::get('/hapus-pendaftar/{patient}', [AdminController::class, 'destroy'])->name('hapus-pendaftar');
+    Route::get('/tolak-pendaftar/{patient}', [AdminController::class, 'destroyFromNotif'])->name('tolak-pendaftar');
+    Route::get('/export-excel', [PatientController::class, 'exportExcel'])->name('export-excel');
+    Route::get('/export-pdf', [PatientController::class, 'exportPdf'])->name('export-pdf');
 
     // Notification
     Route::get('/notification', [NotificationController::class, 'index'])->name('notification');

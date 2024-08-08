@@ -1,11 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
+use Carbon\Carbon;
+use Dompdf\Dompdf;
 use App\Models\Patient;
 use Illuminate\Http\Request;
+use App\Exports\PatientExport;
 use App\Helpers\FileImageHelper;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\StorePatientRequest;
 
 class PatientController extends Controller
@@ -67,5 +71,27 @@ class PatientController extends Controller
             'is_accepted' => 1
         ]);
         return back()->with('success', 'Pendaftar berhasil disetujui');
+    }
+
+    public function exportExcel() {
+        return Excel::download(new PatientExport, 'datapatient.xlsx');
+    }
+
+    public function exportPdf() {
+        Carbon::setLocale('id');
+        $now = Carbon::now();
+        $formattedDate = $now->timezone('Asia/Jakarta')->translatedFormat('d F Y H:i:s');
+
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml(view('menu.pendaftar.patient-excel', [
+            'patient' => Patient::all(),
+            'tanggal' => $formattedDate
+        ]));
+        // (Optional) Setup the paper size and orientation
+        $dompdf->setPaper('A4', 'landscape');
+        // Render the HTML as PDF
+        $dompdf->render();
+        // Output the generated PDF to Browser
+        $dompdf->stream();
     }
 }
