@@ -26,12 +26,8 @@
                         <img src="{{ asset('assets/img/profil-dummy.jpg') }}" class="rounded-3" width="40px" alt="">
                     </a>
                     <div class="dropdown-menu dropdown-menu-end rounded">
-                        <a href="#" class="dropdown-item">
-                            <i class="fa-regular fa-user"></i>
-                            <span>Profile</span>
-                        </a>
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
+                        <a href="{{ route('logout') }}" class="dropdown-item">
                             <i class="fa-solid fa-right-from-bracket"></i>
                             <span>Logout</span>
                         </a>

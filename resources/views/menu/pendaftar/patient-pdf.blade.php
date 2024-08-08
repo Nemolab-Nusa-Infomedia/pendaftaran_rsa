@@ -2,7 +2,7 @@
     table, th, td {
         border : 1px solid rgb(0, 0, 0);
         border-collapse: collapse;
-        font-size: 10px
+        font-size: 12px
     }
     th, td {
         text-align: center;
@@ -13,7 +13,7 @@
         text-align: center;
     }
     p {
-        font-size: 10px;
+        font-size: 12px;
         text-align: right;
     }
 </style>
