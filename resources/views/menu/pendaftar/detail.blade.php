@@ -13,9 +13,10 @@ function formatPhoneNumber($phoneNumber) {
 <div class="row mx-auto">
     <div class="card p-2 card-detail">
         <span class="fs-5 fw-bold">{{ $patient->nama_lengkap_pasien }}</span>
-        <div class="d-flex align-items-center justify-content-between">
-            <span class="text-secondary fw-bold">{{ $patient->kriteria_pasien }}</span>
+        <span class="text-secondary fw-bold text-start mb-3">{{ $patient->kriteria_pasien }}</span>
+        <div class="d-flex align-items-center justify-content-end gap-3">
             @if($patient->is_accepted == false)            
+            <a href="{{ route('tolak-pendaftar', ['patient'=>$patient]) }}" onclick="return confirm('Apakah yakin data pasien ini akan ditolak ?')"><button type="submit" class="btn btn-c4 text-white">Tolak Pendaftaran</button></a>
             <form action="{{ route('accept-patient-pendaftaran', ['patient'=>$patient]) }}" method="post">
                 @csrf
                 <button type="submit" class="btn btn-c7 text-white">Setujui Pendaftaran</button>

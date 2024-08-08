@@ -32,6 +32,7 @@ return new class extends Migration
             $table->text('foto_terbaru_pendamping');
             $table->text('foto_ktp_pendamping');
             $table->boolean('is_accepted')->default(false);
+            $table->boolean('is_read')->default(false);
             $table->timestamps();
         });
     }

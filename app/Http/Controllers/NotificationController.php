@@ -10,7 +10,8 @@ class NotificationController extends Controller
     public function index(){
         $newPatient = Patient::where('is_accepted', false)->get();
         return view('menu.notification.index',compact('newPatient'),[
-            'title' => 'Notification'
+            'title' => 'Notification',
+            'inner' => 'Data Masuk'
         ]);
     }
 }
