@@ -26,7 +26,7 @@
                     <div class="row">
                         <div class="mb-3 col-12">
                             <label class="form-label fw-bold">Email</label>
-                            <input type="text" name="email" class="form-control" style="border-radius: 20px" placeholder="Masukkan email akun">
+                            <input type="email" name="email" class="form-control" style="border-radius: 20px" placeholder="Masukkan email akun">
                         </div>
                         <div class="mb-3 position-relative">
                             <label for="password" class="mb-2 fw-bold">Kata Sandi</label>
