@@ -23,7 +23,7 @@ class PatientController extends Controller
         return view('form.notification.pendaftaran-berhasil',[
             'title' => 'Pendaftaran Berhasil'
         ]);
-    } 
+    }
     public function pendaftaranGagal(){
         return view('form.notification.pendaftaran-gagal',[
             'title' => 'Pendaftaran Gagal'
@@ -92,6 +92,6 @@ class PatientController extends Controller
         // Render the HTML as PDF
         $dompdf->render();
         // Output the generated PDF to Browser
-        $dompdf->stream();
+        $dompdf->stream('datapatient.pdf');
     }
 }
