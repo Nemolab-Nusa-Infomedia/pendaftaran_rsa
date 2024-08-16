@@ -63,6 +63,9 @@ class PatientController extends Controller
                     });
             return redirect()->route('pendaftaran-berhasil')->with('success', 'Data Pasien Berhasil Dikirim !');
         } catch (\Exception $e) {
+            Log::error('Error occurred while sending data: ' . $e->getMessage(), [
+                'exception' => $e
+            ]);
             return redirect()->route('pendaftaran-gagal')->with('error', 'Terjadi kesalahan saat mengirim data!');
         }
     }
