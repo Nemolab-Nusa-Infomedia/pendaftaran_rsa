@@ -97,7 +97,12 @@ class PatientController extends Controller
         // Render the HTML as PDF
         $dompdf->render();
 
-        // Output the generated PDF to Browser
-        $dompdf->stream('datapatient.pdf', ["Attachment" => true]);
+        $dompdf->stream('datapatient.pdf', [
+            "Attachment" => true
+        ]);
+
+        // Setelah stream, Anda bisa menambahkan ini (meskipun Dompdf seharusnya sudah melakukannya):
+        header('Content-Type: application/pdf');
+        header('Content-Disposition: attachment; filename="datapatient.pdf"');
     }
 }
