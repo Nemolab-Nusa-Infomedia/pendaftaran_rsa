@@ -85,24 +85,26 @@ class PatientController extends Controller
         $now = Carbon::now();
         $formattedDate = $now->timezone('Asia/Jakarta')->translatedFormat('d F Y H:i:s');
 
+        ob_start(); // Mulai output buffering
+
         $dompdf = new Dompdf();
         $dompdf->loadHtml(view('menu.pendaftar.patient-pdf', [
             'patient' => Patient::all(),
             'tanggal' => $formattedDate
         ]));
 
-        // (Optional) Setup the paper size and orientation
         $dompdf->setPaper('A4', 'landscape');
-
-        // Render the HTML as PDF
         $dompdf->render();
 
-        $dompdf->stream('datapatient.pdf', [
-            "Attachment" => true
-        ]);
+        // Bersihkan output buffering
+        ob_end_clean();
 
-        // Setelah stream, Anda bisa menambahkan ini (meskipun Dompdf seharusnya sudah melakukannya):
+        // Menambahkan header HTTP secara eksplisit
         header('Content-Type: application/pdf');
         header('Content-Disposition: attachment; filename="datapatient.pdf"');
+
+        $dompdf->stream('datapatient.pdf', ["Attachment" => true]);
+
+        exit();
     }
 }
