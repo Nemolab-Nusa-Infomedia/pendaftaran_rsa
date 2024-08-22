@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DonasiController;
 use App\Http\Controllers\FormDonasiController;
 use App\Http\Controllers\PatientController;
 
@@ -32,6 +33,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/tolak-pendaftar/{patient}', [AdminController::class, 'destroyFromNotif'])->name('tolak-pendaftar');
     Route::get('/export-excel', [PatientController::class, 'exportExcel'])->name('export-excel');
     Route::get('/export-pdf', [PatientController::class, 'exportPdf'])->name('export-pdf');
+
+    // Donasi
+    Route::get('/data-donasi', [DonasiController::class, 'index'])->name('data-donasi');
 
     // Notification
     Route::get('/notification', [NotificationController::class, 'index'])->name('notification');

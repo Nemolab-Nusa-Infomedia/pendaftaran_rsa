@@ -82,7 +82,7 @@ fileInput.addEventListener('change', function(event) {
     var file = event.target.files[0];
     if (file) {
         resetUpload();
-        
+
         fileNameElement.textContent = file.name;
         fileSizeElement.textContent = (file.size / 1024 / 1024).toFixed(2) + ' MB';
 
@@ -141,4 +141,26 @@ document.getElementById('retry-upload').addEventListener('click', function(event
 document.getElementById('remove-upload').addEventListener('click', function(event) {
     event.preventDefault();
     resetUpload();
+});
+
+// metode pembayaran
+document.addEventListener('DOMContentLoaded', function() {
+    const briOption = document.getElementById('bri-option');
+    const qrisOption = document.getElementById('qris-option');
+    const briSection = document.getElementById('bri-section');
+    const qrisSection = document.getElementById('qris-section');
+
+    briOption.addEventListener('change', function() {
+        if (briOption.checked) {
+            briSection.classList.remove('d-none');
+            qrisSection.classList.add('d-none');
+        }
+    });
+
+    qrisOption.addEventListener('change', function() {
+        if (qrisOption.checked) {
+            qrisSection.classList.remove('d-none');
+            briSection.classList.add('d-none');
+        }
+    });
 });

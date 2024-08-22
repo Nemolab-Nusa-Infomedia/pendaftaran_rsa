@@ -15,6 +15,12 @@
                 <span>Pasien</span>
             </a>
         </li>
+        <li class="sidebar-item">
+            <a href="{{ route('data-donasi') }}" class="sidebar-link">
+                <i class="fa-solid fa-hand-holding-medical"></i>
+                <span>Donasi</span>
+            </a>
+        </li>
     </ul>
 
     <div class="sidebar-footer">

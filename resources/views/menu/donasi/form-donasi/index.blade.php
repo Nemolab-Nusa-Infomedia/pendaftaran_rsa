@@ -26,7 +26,7 @@
         <div class="stepper mt-4">
             <div id="step-1" class="step active">
                 <div class="circle"></div>
-                <div class="label">Isi Nominal & Biodata</div>
+                <div class="label">Biodata</div>
             </div>
             <div id="step-2" class="step">
                 <div class="circle"></div>
@@ -53,38 +53,6 @@
                                 <div class="col-12 col-md-12 p-0">
                                     <h1 class="fw-bold">Form Donatur</h1>
                                     <p>Form Donatur Untuk Pasien Rumah Singgah Amanah</p>
-                                </div>
-                                <div class="col-12 col-md-12 p-0 mb-3">
-                                    <span class="fs-5 fw-bold">Pilih Nominal Donasi</span> <br>
-                                    <span class="text-secondary">Masukkan Nominal Donasi Anda</span>
-
-                                    <div class="mb-2 mt-2">
-                                        <label class="radio-container mb-2">
-                                            <input type="radio" name="amount" value="50000">
-                                            <span class="radio-custom"></span>
-                                            <span class="radio-label">Rp. 50.000;-</span>
-                                        </label>
-                                        <label class="radio-container mb-2">
-                                            <input type="radio" name="amount" value="50000">
-                                            <span class="radio-custom"></span>
-                                            <span class="radio-label">Rp. 100.000;-</span>
-                                        </label>
-                                        <label class="radio-container mb-2">
-                                            <input type="radio" name="amount" value="50000">
-                                            <span class="radio-custom"></span>
-                                            <span class="radio-label">Rp. 150.000;-</span>
-                                        </label>
-                                        <label class="radio-container mb-2">
-                                            <input type="radio" name="amount" value="50000">
-                                            <span class="radio-custom"></span>
-                                            <span class="radio-label">Rp. 200.000;-</span>
-                                        </label>
-                                    </div>
-
-                                    <div class="mb-2">
-                                        <span class="text-secondary">Nominal Donasi Lainnya</span>
-                                        <input type="text" class="form-control" value="Rp.">
-                                    </div>
                                 </div>
 
                                 <div class="col-12 col-md-12 p-0 mb-3">
@@ -137,26 +105,32 @@
                                     <p>Form Donatur Untuk Pasien Rumah Singgah Amanah</p>
                                 </div>
                                 <div class="col-12 col-md-12 p-0 mb-3">
-                                    <span class="fs-5 fw-bold">Pilih Nominal Donasi</span> <br>
+                                    <span class="fs-5 fw-bold">Pilih Metode Donasi</span> <br>
                                     <div class="mb-2 mt-2">
-                                        <label class="text-secondary">Nominal Donasi </label>
-                                        <input type="text" class="form-control py-2 rounded-0" value="Rp." disabled>
+                                        <label class="radio-container mb-2">
+                                            <input type="radio" name="payment-method" value="BRI" id="bri-option">
+                                            <span class="radio-custom"></span>
+                                            <span class="radio-label">BRI</span>
+                                        </label>
+                                        <label class="radio-container mb-2">
+                                            <input type="radio" name="payment-method" value="QRIS" id="qris-option">
+                                            <span class="radio-custom"></span>
+                                            <span class="radio-label">QRIS</span>
+                                        </label>
                                     </div>
-
-                                    <div class="mb-2">
-                                        <span class="text-secondary">Metode Pembayaran</span>
-
-                                        <div class="bg-c2 py-2 px-2 mb-3">
-                                            <img src="{{ asset('assets/img/qris.png') }}" width="40px" alt="">
-                                            Pembayaran QRIS
-                                        </div>
-
-                                        <div class="bg-c2 py-2 px-2 mb-2">
-                                            <img src="{{ asset('assets/img/qr.png') }}" width="150px" alt="">
-                                        </div>
-                                    </div>
-
                                 </div>
+
+                                {{-- qris --}}
+                                <div id="qris-section" class="mb-2 text-center d-none">
+                                    <img src="{{ asset('assets/img/qr-rumahsinggahamanah.jpg') }}" width="400px" alt="">
+                                </div>
+
+                                {{-- bri --}}
+                                <div id="bri-section" class="mb-2 text-center gap-3 d-none">
+                                    <img src="{{ asset('assets/img/rekening.png') }}" width="300px" alt="">
+                                    <h3>137701006037506 / An. Slamet P.</h3>
+                                </div>
+
                                 <div class="row mx-auto gap-2 p-0">
                                     <button type="button" class="btn btn-c1 text-white" id="next-button-2">Selanjutnya</button>
                                     <button type="button" class="btn btn-outline-c1" id="back-button-1">Kembali</button>
@@ -224,7 +198,7 @@
                                     <div class="d-flex justify-content-center">
                                         <div class="row">
                                             <img src="{{ asset('assets/img/success.png') }}" class="mx-auto" style="width: 150px" alt="">
-            
+
                                             <div class="text-center">
                                                 <h3>Yeay, Donasi Anda Berhasil Terkirim!</h3>
                                                 <p>Terima kasih atas donasi Anda di Rumah Singgah Amanah, <br>
