@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Carbon\Carbon;
 use App\Models\Patient;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -21,6 +22,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Change format date for application
+        Carbon::setLocale('id');
+
+
+        // Notification section
         View::composer('*', function ($view) {
             $pendingPatientCount = Patient::where('is_accepted', 0)->count();
             $view->with('pendingPatientCount', $pendingPatientCount);

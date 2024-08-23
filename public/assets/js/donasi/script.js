@@ -29,12 +29,6 @@ function initStepper() {
         document.getElementById('form-part-2').classList.remove('d-none');
         updateStepper(2);
     });
-
-    document.getElementById('next-button-3').addEventListener('click', function() {
-        document.getElementById('form-part-3').classList.add('d-none');
-        document.getElementById('form-part-4').classList.remove('d-none');
-        updateStepper(4);
-    });
 }
 
 function updateStepper(currentStep) {
@@ -81,7 +75,6 @@ function resetUpload() {
 fileInput.addEventListener('change', function(event) {
     var file = event.target.files[0];
     if (file) {
-        resetUpload();
 
         fileNameElement.textContent = file.name;
         fileSizeElement.textContent = (file.size / 1024 / 1024).toFixed(2) + ' MB';
@@ -164,3 +157,45 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+$(document).ready(function() {
+    $('#formDonate').on('submit', function(e) {
+        e.preventDefault();
+
+        var formData = new FormData(this); // Buat FormData dari form
+        $.ajax({
+            url: '/donasi-send',
+            type: 'POST',
+            data: formData,
+            contentType: false,  // Penting untuk menangani file
+            processData: false,  // Penting untuk menangani file
+            success: function(response) {
+                if (response.status === 200) {
+                    document.getElementById('form-part-3').classList.add('d-none');
+                    document.getElementById('form-part-4').classList.remove('d-none');
+                    updateStepper(4);
+                } else {
+                    alert('Something went wrong. Please try again.');
+                }
+            },
+            error: function(xhr) {
+                if (xhr.status === 500) {
+                    $('#responseMessage').text('Server error! Please try again later.');
+                } else if (xhr.status === 422) {
+                    var errors = xhr.responseJSON.errors;
+                    var errorMessage = '';
+                    for (var field in errors) {
+                        errorMessage += errors[field][0] + ' '; 
+                    }
+                    alert(errorMessage);
+                } else {
+                    $('#responseMessage').text('Unexpected error. Please try again.');
+                }
+            }
+        });
+    });
+});
+
+
+
+

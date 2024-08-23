@@ -22,6 +22,7 @@ Route::get('/pendaftaran-gagal', [PatientController::class, 'pendaftaranGagal'])
 
 // Donasi
 Route::get('/donasi', [FormDonasiController::class, 'index'])->name('donasi');
+Route::post('/donasi-send', [FormDonasiController::class, 'donate'])->name('send-donate');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
