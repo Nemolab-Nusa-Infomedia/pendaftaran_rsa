@@ -63,6 +63,9 @@ class PatientController extends Controller
                     });
             return redirect()->route('pendaftaran-berhasil')->with('success', 'Data Pasien Berhasil Dikirim !');
         } catch (\Exception $e) {
+            Log::error('Error occurred while sending data: ' . $e->getMessage(), [
+                'exception' => $e
+            ]);
             return redirect()->route('pendaftaran-gagal')->with('error', 'Terjadi kesalahan saat mengirim data!');
         }
     }
@@ -82,16 +85,26 @@ class PatientController extends Controller
         $now = Carbon::now();
         $formattedDate = $now->timezone('Asia/Jakarta')->translatedFormat('d F Y H:i:s');
 
+        ob_start(); // Mulai output buffering
+
         $dompdf = new Dompdf();
         $dompdf->loadHtml(view('menu.pendaftar.patient-pdf', [
             'patient' => Patient::all(),
             'tanggal' => $formattedDate
         ]));
-        // (Optional) Setup the paper size and orientation
+
         $dompdf->setPaper('A4', 'landscape');
-        // Render the HTML as PDF
         $dompdf->render();
-        // Output the generated PDF to Browser
-        $dompdf->stream('datapatient.pdf');
+
+        // Bersihkan output buffering
+        ob_end_clean();
+
+        // Menambahkan header HTTP secara eksplisit
+        header('Content-Type: application/pdf');
+        header('Content-Disposition: attachment; filename="datapatient.pdf"');
+
+        $dompdf->stream('datapatient.pdf', ["Attachment" => true]);
+
+        exit();
     }
 }

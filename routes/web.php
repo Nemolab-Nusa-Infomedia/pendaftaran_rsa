@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DonasiController;
 use App\Http\Controllers\FormDonasiController;
 use App\Http\Controllers\PatientController;
 
@@ -21,6 +22,7 @@ Route::get('/pendaftaran-gagal', [PatientController::class, 'pendaftaranGagal'])
 
 // Donasi
 Route::get('/donasi', [FormDonasiController::class, 'index'])->name('donasi');
+Route::post('/donasi-send', [FormDonasiController::class, 'donate'])->name('send-donate');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
@@ -31,7 +33,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/hapus-pendaftar/{patient}', [AdminController::class, 'destroy'])->name('hapus-pendaftar');
     Route::get('/tolak-pendaftar/{patient}', [AdminController::class, 'destroyFromNotif'])->name('tolak-pendaftar');
     Route::get('/export-excel', [PatientController::class, 'exportExcel'])->name('export-excel');
+    Route::get('/export-excel', [DonasiController::class, 'exportExcel'])->name('export-excel-donation');
     Route::get('/export-pdf', [PatientController::class, 'exportPdf'])->name('export-pdf');
+    Route::get('/export-pdf', [DonasiController::class, 'exportPdf'])->name('export-pdf-donation');
+
+    // Donasi
+    Route::get('/data-donasi', [DonasiController::class, 'index'])->name('data-donasi');
 
     // Notification
     Route::get('/notification', [NotificationController::class, 'index'])->name('notification');

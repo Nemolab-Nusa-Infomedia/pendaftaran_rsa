@@ -26,7 +26,7 @@
         <div class="stepper mt-4">
             <div id="step-1" class="step active">
                 <div class="circle"></div>
-                <div class="label">Isi Nominal & Biodata</div>
+                <div class="label">Biodata</div>
             </div>
             <div id="step-2" class="step">
                 <div class="circle"></div>
@@ -46,7 +46,8 @@
             <div class="row mx-auto">
                 <div class="col-12 col-md-9 mx-auto">
 
-                    <form action="">
+                    <form id="formDonate" enctype="multipart/form-data">
+                        @csrf
                         <div class="row p-0">
                             {{-- isi nominal dan biodata --}}
                             <div id="form-part-1" class="row mx-auto p-0">
@@ -54,51 +55,19 @@
                                     <h1 class="fw-bold">Form Donatur</h1>
                                     <p>Form Donatur Untuk Pasien Rumah Singgah Amanah</p>
                                 </div>
-                                <div class="col-12 col-md-12 p-0 mb-3">
-                                    <span class="fs-5 fw-bold">Pilih Nominal Donasi</span> <br>
-                                    <span class="text-secondary">Masukkan Nominal Donasi Anda</span>
-
-                                    <div class="mb-2 mt-2">
-                                        <label class="radio-container mb-2">
-                                            <input type="radio" name="amount" value="50000">
-                                            <span class="radio-custom"></span>
-                                            <span class="radio-label">Rp. 50.000;-</span>
-                                        </label>
-                                        <label class="radio-container mb-2">
-                                            <input type="radio" name="amount" value="50000">
-                                            <span class="radio-custom"></span>
-                                            <span class="radio-label">Rp. 100.000;-</span>
-                                        </label>
-                                        <label class="radio-container mb-2">
-                                            <input type="radio" name="amount" value="50000">
-                                            <span class="radio-custom"></span>
-                                            <span class="radio-label">Rp. 150.000;-</span>
-                                        </label>
-                                        <label class="radio-container mb-2">
-                                            <input type="radio" name="amount" value="50000">
-                                            <span class="radio-custom"></span>
-                                            <span class="radio-label">Rp. 200.000;-</span>
-                                        </label>
-                                    </div>
-
-                                    <div class="mb-2">
-                                        <span class="text-secondary">Nominal Donasi Lainnya</span>
-                                        <input type="text" class="form-control" value="Rp.">
-                                    </div>
-                                </div>
 
                                 <div class="col-12 col-md-12 p-0 mb-3">
                                     <span class="fs-5 fw-bold">Isi Biodata</span> <br>
                                     <span class="text-secondary">Lengkapi Data Dibawah ini</span>
 
                                     <div class="mb-2 mt-2">
-                                        <input type="text" class="form-control" placeholder="Nama Lengkap">
+                                        <input type="text" class="form-control" name="name" placeholder="Nama Lengkap">
                                     </div>
                                     <div class="mb-2">
-                                        <input type="text" class="form-control" placeholder="Nomor atau Email">
+                                        <input type="text" class="form-control" name="no_or_email" placeholder="Nomor atau Email">
                                     </div>
                                     <div class="mb-2">
-                                        <textarea class="form-control" rows="3" placeholder="Tulisakan pesan atau do'a"></textarea>
+                                        <textarea class="form-control" rows="3" name="message_donor" placeholder="Tulisakan pesan atau do'a"></textarea>
                                     </div>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="text-start">
@@ -106,7 +75,7 @@
                                         </div>
                                         <div class="">
                                             <label class="switch">
-                                                <input checked="" type="checkbox">
+                                                <input name="is_anonim" type="checkbox" value="1">
                                                 <div class="slider">
                                                     <div class="circle-button">
                                                         <svg class="cross" xml:space="preserve" style="enable-background:new 0 0 512 512" viewBox="0 0 365.696 365.696" y="0" x="0" height="6" width="6" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -137,26 +106,32 @@
                                     <p>Form Donatur Untuk Pasien Rumah Singgah Amanah</p>
                                 </div>
                                 <div class="col-12 col-md-12 p-0 mb-3">
-                                    <span class="fs-5 fw-bold">Pilih Nominal Donasi</span> <br>
+                                    <span class="fs-5 fw-bold">Pilih Metode Donasi</span> <br>
                                     <div class="mb-2 mt-2">
-                                        <label class="text-secondary">Nominal Donasi </label>
-                                        <input type="text" class="form-control py-2 rounded-0" value="Rp." disabled>
+                                        <label class="radio-container mb-2">
+                                            <input type="radio" name="method_payment" value="BRI" id="bri-option">
+                                            <span class="radio-custom"></span>
+                                            <span class="radio-label">BRI</span>
+                                        </label>
+                                        <label class="radio-container mb-2">
+                                            <input type="radio" name="method_payment" value="QRIS" id="qris-option">
+                                            <span class="radio-custom"></span>
+                                            <span class="radio-label">QRIS</span>
+                                        </label>
                                     </div>
-
-                                    <div class="mb-2">
-                                        <span class="text-secondary">Metode Pembayaran</span>
-
-                                        <div class="bg-c2 py-2 px-2 mb-3">
-                                            <img src="{{ asset('assets/img/qris.png') }}" width="40px" alt="">
-                                            Pembayaran QRIS
-                                        </div>
-
-                                        <div class="bg-c2 py-2 px-2 mb-2">
-                                            <img src="{{ asset('assets/img/qr.png') }}" width="150px" alt="">
-                                        </div>
-                                    </div>
-
                                 </div>
+
+                                {{-- qris --}}
+                                <div id="qris-section" class="mb-2 text-center d-none">
+                                    <img src="{{ asset('assets/img/qr-rumahsinggahamanah.jpg') }}" width="400px" alt="">
+                                </div>
+
+                                {{-- bri --}}
+                                <div id="bri-section" class="mb-2 text-center gap-3 d-none">
+                                    <img src="{{ asset('assets/img/rekening.png') }}" width="300px" alt="">
+                                    <h3>137701006037506 / An. Slamet P.</h3>
+                                </div>
+
                                 <div class="row mx-auto gap-2 p-0">
                                     <button type="button" class="btn btn-c1 text-white" id="next-button-2">Selanjutnya</button>
                                     <button type="button" class="btn btn-outline-c1" id="back-button-1">Kembali</button>
@@ -183,7 +158,8 @@
 
                                         <div class="d-flex justify-content-center mx-auto position-relative rounded-2 px-1" style="border: 1px solid #00AB45; width: 100px; cursor: pointer;">
                                             <span class="position-absolute text-center align-middle text-c1 mt-12">Unggah File</span>
-                                            <input id="file-upload" type="file" name="bg_cover" style="cursor: pointer; opacity: 0; width: 100%">
+                                            <input id="file-upload" type="file" name="payment_proof" style="cursor: pointer; opacity: 0; z-index:99; width: 100%">
+                                            {{-- <input id="file-upload" type="file" name="payment_proof"> --}}
                                         </div>
                                     </div>
 
@@ -212,10 +188,11 @@
                                     </div>
                                 </div>
                                 <div class="row mx-auto gap-2 p-0">
-                                    <button type="button" class="btn btn-c1 text-white" id="next-button-3">Selanjutnya</button>
+                                    <button type="submit" class="btn btn-c1 text-white" id="next-button-3">Kirim</button>
                                     <button type="button" class="btn btn-outline-c1" id="back-button-2">Kembali</button>
                                 </div>
                             </div>
+                        </form>
 
 
                             {{-- success donasi --}}
@@ -224,7 +201,7 @@
                                     <div class="d-flex justify-content-center">
                                         <div class="row">
                                             <img src="{{ asset('assets/img/success.png') }}" class="mx-auto" style="width: 150px" alt="">
-            
+
                                             <div class="text-center">
                                                 <h3>Yeay, Donasi Anda Berhasil Terkirim!</h3>
                                                 <p>Terima kasih atas donasi Anda di Rumah Singgah Amanah, <br>
@@ -240,7 +217,6 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
                 </div>
             </div>
         </div>
@@ -248,7 +224,8 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="{{ asset('assets/js/donasi/script.js') }}"></script>
-
+    
   </body>
 </html>
