@@ -33,7 +33,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/hapus-pendaftar/{patient}', [AdminController::class, 'destroy'])->name('hapus-pendaftar');
     Route::get('/tolak-pendaftar/{patient}', [AdminController::class, 'destroyFromNotif'])->name('tolak-pendaftar');
     Route::get('/export-excel', [PatientController::class, 'exportExcel'])->name('export-excel');
+    Route::get('/export-excel', [DonasiController::class, 'exportExcel'])->name('export-excel-donation');
     Route::get('/export-pdf', [PatientController::class, 'exportPdf'])->name('export-pdf');
+    Route::get('/export-pdf', [DonasiController::class, 'exportPdf'])->name('export-pdf-donation');
 
     // Donasi
     Route::get('/data-donasi', [DonasiController::class, 'index'])->name('data-donasi');
