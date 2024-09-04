@@ -61,7 +61,7 @@
                                     <span class="text-secondary">Lengkapi Data Dibawah ini</span>
 
                                     <div class="mb-2 mt-2">
-                                        <input type="text" class="form-control" name="name" placeholder="Nama Lengkap">
+                                        <input type="text" class="form-control" name="name" placeholder="Nama Lengkap" required>
                                     </div>
                                     <div class="mb-2">
                                         <input type="text" class="form-control" name="no_or_email" placeholder="Nomor atau Email">
@@ -122,12 +122,12 @@
                                 </div>
 
                                 {{-- qris --}}
-                                <div id="qris-section" class="mb-2 text-center d-none">
-                                    <img src="{{ asset('assets/img/qr-rumahsinggahamanah.jpg') }}" width="400px" alt="">
+                                <div id="qris-section" class="mb-2 text-center d-none qris-pay">
+                                    <img src="{{ asset('assets/img/qr-rumahsinggahamanah.jpg') }}" width="300px" alt="">
                                 </div>
 
                                 {{-- bri --}}
-                                <div id="bri-section" class="mb-2 text-center gap-3 d-none">
+                                <div id="bri-section" class="mb-2 text-center gap-3 d-none bri-pay">
                                     <img src="{{ asset('assets/img/rekening.png') }}" width="300px" alt="">
                                     <h3>137701006037506 / An. Slamet P.</h3>
                                 </div>
@@ -158,7 +158,7 @@
 
                                         <div class="d-flex justify-content-center mx-auto position-relative rounded-2 px-1" style="border: 1px solid #00AB45; width: 100px; cursor: pointer;">
                                             <span class="position-absolute text-center align-middle text-c1 mt-12">Unggah File</span>
-                                            <input id="file-upload" type="file" name="payment_proof" style="cursor: pointer; opacity: 0; z-index:99; width: 100%">
+                                            <input id="file-upload" type="file" name="payment_proof" style="cursor: pointer; opacity: 0; z-index:99; width: 100%" required>
                                             {{-- <input id="file-upload" type="file" name="payment_proof"> --}}
                                         </div>
                                     </div>
@@ -226,6 +226,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="{{ asset('assets/js/donasi/script.js') }}"></script>
-    
+
   </body>
 </html>

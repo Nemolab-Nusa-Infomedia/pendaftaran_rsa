@@ -185,7 +185,7 @@ $(document).ready(function() {
                     var errors = xhr.responseJSON.errors;
                     var errorMessage = '';
                     for (var field in errors) {
-                        errorMessage += errors[field][0] + ' '; 
+                        errorMessage += errors[field][0] + ' ';
                     }
                     alert(errorMessage);
                 } else {
@@ -195,6 +195,8 @@ $(document).ready(function() {
         });
     });
 });
+
+
 
 
 

@@ -261,3 +261,12 @@ input[type="radio"]:checked + .radio-custom:before {
         font-size: 10px;
     }
 }
+
+@media (max-width : 340px) {
+    .qris-pay img{
+        width: 200px;
+    }
+    .bri-pay img{
+        width: 200px;
+    }
+}
