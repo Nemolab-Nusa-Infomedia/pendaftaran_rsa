@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Dompdf\Dompdf;
+use Dompdf\Options;
 use App\Models\Patient;
 use Illuminate\Http\Request;
 use App\Exports\PatientExport;
@@ -73,17 +74,51 @@ class PatientController extends Controller
         $patient->update([
             'is_accepted' => 1
         ]);
-        return back()->with('success', 'Pendaftar berhasil disetujui');
+        Carbon::setLocale('id');
+        $now = Carbon::now();
+        $formattedDate = $now->timezone('Asia/Jakarta')->translatedFormat('d F Y H:i:s');
+
+        ob_start(); // Mulai output buffering
+
+        $options = new Options();
+        $options->set('isRemoteEnabled', true);
+        $dompdf = new Dompdf($options);
+        $dompdf->loadHtml(view('menu.pendaftar.detail-pdf-pendaftar', [
+            'patient' => Patient::find($patient->id),
+            'tanggal' => $formattedDate
+        ]));
+
+        $dompdf->setPaper('A4', 'landscape');
+        $dompdf->render();
+
+        // Bersihkan output buffering
+        ob_end_clean();
+
+        // Menambahkan header HTTP secara eksplisit
+        header('Content-Type: application/pdf');
+
+        $dompdf->stream('datapatient'.str_replace(' ', '_', $patient->nama_lengkap_pasien).'.pdf', ["Attachment" => true]);
+
+        exit();
+
     }
 
     public function exportExcel() {
         return Excel::download(new PatientExport, 'datapatient.xlsx');
     }
 
-    public function exportPdf() {
+    public function exportPdf() {   
         Carbon::setLocale('id');
         $now = Carbon::now();
         $formattedDate = $now->timezone('Asia/Jakarta')->translatedFormat('d F Y H:i:s');
+
+        $options = new Options();
+        $options->set('enabled', true);
+        $options->set('isHtml5ParserEnabled', true);
+        $options->set('isPhpEnabled', true);
+        $options->set('isFontSubsettingEnabled', false);
+        $options->set('pdfBackend', 'CPDF');
+        $options->set('isRemoteEnabled',true);
 
         ob_start(); // Mulai output buffering
 
@@ -107,4 +142,5 @@ class PatientController extends Controller
 
         exit();
     }
+    
 }

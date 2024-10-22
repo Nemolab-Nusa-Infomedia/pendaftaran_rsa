@@ -24,6 +24,10 @@ Route::get('/pendaftaran-gagal', [PatientController::class, 'pendaftaranGagal'])
 Route::get('/donasi', [FormDonasiController::class, 'index'])->name('donasi');
 Route::post('/donasi-send', [FormDonasiController::class, 'donate'])->name('send-donate');
 
+Route::get('/tesview', function () {
+    return view('menu.pendaftar.detail-pdf-pendaftar');
+});
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
