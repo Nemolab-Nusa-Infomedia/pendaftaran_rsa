@@ -89,7 +89,7 @@ class PatientController extends Controller
             'tanggal' => $formattedDate
         ]));
 
-        $dompdf->setPaper('A4', 'landscape');
+        $dompdf->setPaper('A4', 'potrait');
         $dompdf->render();
 
         // Bersihkan output buffering
@@ -100,7 +100,6 @@ class PatientController extends Controller
 
         $dompdf->stream('datapatient'.str_replace(' ', '_', $patient->nama_lengkap_pasien).'.pdf', ["Attachment" => true]);
 
-        exit();
 
         if($patient->foto_ktp_pasien){
             Storage::delete('public/'.$patient->foto_ktp_pasien);
@@ -127,6 +126,8 @@ class PatientController extends Controller
             Storage::delete('public/'.$patient->foto_ktp_pendamping);
         }
         $patient->delete();
+
+        return redirect()->route('notification');
 
     }
 
