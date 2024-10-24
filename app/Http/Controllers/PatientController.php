@@ -102,28 +102,28 @@ class PatientController extends Controller
 
 
         if($patient->foto_ktp_pasien){
-            Storage::delete('public/'.$patient->foto_ktp_pasien);
+            Storage::delete($patient->foto_ktp_pasien);
         }
         if($patient->foto_ktp_pasien){
-            Storage::delete('public/'.$patient->foto_terbaru_pasien);
+            Storage::delete($patient->foto_terbaru_pasien);
         }
         if($patient->foto_kk){
-            Storage::delete('public/'.$patient->foto_kk);
+            Storage::delete($patient->foto_kk);
         }
         if($patient->foto_surat_rujukan){
-            Storage::delete('public/'.$patient->foto_surat_rujukan);
+            Storage::delete($patient->foto_surat_rujukan);
         }
         if($patient->foto_bpjs_kelas_tiga){
-            Storage::delete('public/'.$patient->foto_bpjs_kelas_tiga);
+            Storage::delete($patient->foto_bpjs_kelas_tiga);
         }
         if($patient->foto_skm){
-            Storage::delete('public/'.$patient->foto_skm);
+            Storage::delete($patient->foto_skm);
         }
         if($patient->foto_terbaru_pendamping){
-            Storage::delete('public/'.$patient->foto_terbaru_pendamping);
+            Storage::delete($patient->foto_terbaru_pendamping);
         }
         if($patient->foto_ktp_pendamping){
-            Storage::delete('public/'.$patient->foto_ktp_pendamping);
+            Storage::delete($patient->foto_ktp_pendamping);
         }
         $patient->delete();
 
@@ -135,7 +135,7 @@ class PatientController extends Controller
         return Excel::download(new PatientExport, 'datapatient.xlsx');
     }
 
-    public function exportPdf() {   
+    public function exportPdf() {
         Carbon::setLocale('id');
         $now = Carbon::now();
         $formattedDate = $now->timezone('Asia/Jakarta')->translatedFormat('d F Y H:i:s');
@@ -170,5 +170,5 @@ class PatientController extends Controller
 
         exit();
     }
-    
+
 }
