@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Dompdf\Dompdf;
+use Dompdf\Options;
 use App\Models\Patient;
 use Illuminate\Http\Request;
 use App\Exports\PatientExport;
@@ -10,6 +11,7 @@ use App\Helpers\FileImageHelper;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StorePatientRequest;
 
 class PatientController extends Controller
@@ -70,20 +72,81 @@ class PatientController extends Controller
         }
     }
     public function acceptPatient(Patient $patient){
-        $patient->update([
-            'is_accepted' => 1
-        ]);
-        return back()->with('success', 'Pendaftar berhasil disetujui');
+        // $patient->update([
+        //     'is_accepted' => 1
+        // ]);
+        Carbon::setLocale('id');
+        $now = Carbon::now();
+        $formattedDate = $now->timezone('Asia/Jakarta')->translatedFormat('d F Y H:i:s');
+
+        ob_start(); // Mulai output buffering
+
+        $options = new Options();
+        $options->set('isRemoteEnabled', true);
+        $dompdf = new Dompdf($options);
+        $dompdf->loadHtml(view('menu.pendaftar.detail-pdf-pendaftar', [
+            'patient' => Patient::find($patient->id),
+            'tanggal' => $formattedDate
+        ]));
+
+        $dompdf->setPaper('A4', 'potrait');
+        $dompdf->render();
+
+        // Bersihkan output buffering
+        ob_end_clean();
+
+        // Menambahkan header HTTP secara eksplisit
+        header('Content-Type: application/pdf');
+
+        $dompdf->stream('datapatient'.str_replace(' ', '_', $patient->nama_lengkap_pasien).'.pdf', ["Attachment" => true]);
+
+
+        if($patient->foto_ktp_pasien){
+            Storage::delete('public/'.$patient->foto_ktp_pasien);
+        }
+        if($patient->foto_ktp_pasien){
+            Storage::delete('public/'.$patient->foto_terbaru_pasien);
+        }
+        if($patient->foto_kk){
+            Storage::delete('public/'.$patient->foto_kk);
+        }
+        if($patient->foto_surat_rujukan){
+            Storage::delete('public/'.$patient->foto_surat_rujukan);
+        }
+        if($patient->foto_bpjs_kelas_tiga){
+            Storage::delete('public/'.$patient->foto_bpjs_kelas_tiga);
+        }
+        if($patient->foto_skm){
+            Storage::delete('public/'.$patient->foto_skm);
+        }
+        if($patient->foto_terbaru_pendamping){
+            Storage::delete('public/'.$patient->foto_terbaru_pendamping);
+        }
+        if($patient->foto_ktp_pendamping){
+            Storage::delete('public/'.$patient->foto_ktp_pendamping);
+        }
+        $patient->delete();
+
+        return redirect()->route('notification');
+
     }
 
     public function exportExcel() {
         return Excel::download(new PatientExport, 'datapatient.xlsx');
     }
 
-    public function exportPdf() {
+    public function exportPdf() {   
         Carbon::setLocale('id');
         $now = Carbon::now();
         $formattedDate = $now->timezone('Asia/Jakarta')->translatedFormat('d F Y H:i:s');
+
+        $options = new Options();
+        $options->set('enabled', true);
+        $options->set('isHtml5ParserEnabled', true);
+        $options->set('isPhpEnabled', true);
+        $options->set('isFontSubsettingEnabled', false);
+        $options->set('pdfBackend', 'CPDF');
+        $options->set('isRemoteEnabled',true);
 
         ob_start(); // Mulai output buffering
 
@@ -107,4 +170,5 @@ class PatientController extends Controller
 
         exit();
     }
+    
 }
