@@ -16,7 +16,7 @@
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-lg p-0">
         <div class="container-fluid d-flex justify-content-center">
-          <a class="navbar-brand" href="#">
+          <a class="navbar-brand" href="https://rumahsinggahamanah.web.id/">
             <img src="{{ asset('assets/img/rumah-singgah-logo.png') }}" width="150px" alt="">
           </a>
         </div>
@@ -96,6 +96,7 @@
                                 </div>
                                 <div class="row mx-auto gap-2 p-0">
                                     <button type="button" class="btn btn-c1 text-white" id="next-button-1">Selanjutnya</button>
+                                    <a href="https://rumahsinggahamanah.web.id/" class="btn btn-c1 text-white" id="next-button-1">Kembali</a>
                                 </div>
                             </div>
 
